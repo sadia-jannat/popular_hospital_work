@@ -2,7 +2,7 @@
 
 <html>
   <head>
-   
+
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
@@ -37,7 +37,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">        
  <!--end-->
 
- <style>
+<style>
   .form-control:focus {  
   box-shadow: none;  
 }  
@@ -73,7 +73,7 @@ font-size: 32px;
  </style>
 
 </head>
-<body>
+<body >
 
 <!--nav wrap and menu-, header body-->
 <div class="container">        
@@ -156,14 +156,14 @@ font-size: 32px;
                 <input class="form-control rounded rounded-pill m-4 border-5 bg-transparent" type="text" name="queryday" placeholder="Search by Daywork" aria-label="Search " >
                 
                 <div class="input-group-append"> 
-                <button class="btn btn-outline-success" type="submit" ><i class="fa fa-search fa-1x"> </i></button>
+                <button class="btn btn-secondary rounded rounded-pill m-4 border-5 bg-dark"><i class="fa fa-search fa-1x"> </i></button>
                 </div>
 
             </form>  
             
             </div>  
           
-       <span>If you don't find any doctor,You can search either speciality or daywork option neither area or specility.You can also search only one option to search.</span>
+       <span>You can search any options as you prefere.</span>
       </div>  
     </div>  
   </div>     
@@ -191,6 +191,7 @@ font-size: 32px;
                           <h6 class="card-title mt-1" style="color: rgb(2, 53, 2)" class="card-subtitle mt-1">Specialist: {{ product.special }}</h3>
                           <h6 class="card-title mt-1" style="color: rgb(2, 53, 2)" class="card-subtitle mt-1">Email: {{ product.email}}</h3>
                           <hr>
+                          <a href="{% url 'appointment' product.pk %}" class="btn btn-dark ml-2">Get Appointment</a>
                          
                           
                       </div>
@@ -208,6 +209,7 @@ font-size: 32px;
 </div>
 </section>
 <!--end details-->
+
 
 <!-- Optional JavaScript; choose one of the two! -->
     <!-- Option 1: Bootstrap Bundle with Popper -->
