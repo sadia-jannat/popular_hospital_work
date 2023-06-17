@@ -1,0 +1,156 @@
+{%load static %}
+
+<html>
+  <head>
+   
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+<!-- Fontawesome Links icon -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    
+<!--Fontawesome link for text-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@500&display=swap" rel="stylesheet">
+
+<!-- Fontawesome Links icon -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    
+<!--Fontawesome link for text-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@500&display=swap" rel="stylesheet">
+
+<!--Autocomplete link-->
+<link rel="stylesheet" href="https://unpkg.com/@trevoreyre/autocomplete-js/dist/style.css"/>
+
+
+<!-- jQuery for auto search last -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<!-- jQuery UI for auto search last-->
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+ <title>House </title>
+
+<!--latest--> 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">        
+ <!--end-->
+ <style>
+    
+  body {  
+    background-color: #dde0dd;
+    min-height: 100vh;  
+    margin: 10px; 
+   background-color: #68f768;
+  }  
+  .container{
+    
+   background-color: aliceblue;
+  }
+  .logo i {
+     color: #054605;
+     font-size: 40px;
+ }
+  
+   </style> 
+    
+</head>
+<body>
+
+<!--doctor details-->  
+  <section>
+    <div class="container">
+    <h2 style="text-align: center;">Doctor Information</h2>
+    <div class="row">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Speciality</th>
+        <th scope="col">Location</th>
+        <th scope="col">Day</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">{{appo.name}}</th>
+        <td>{{appo.special}}</td>
+        <td>{{appo.area}}</td>
+        <td>{{appo.daywork}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+</div>
+<br><br>
+<!--end doctor details--> 
+
+<!--appointment patient form -->
+<section>
+  <div class="container">
+  <h2 style="text-align: center;">Book Doctor Appointment</h2>
+  <div class="row">
+  
+  <div class="col-8">
+  
+  <form action="" method="post" enctype="multipart/form-data"  class="shadow p-5">
+  {% csrf_token %}
+  
+  {%for a in appoint %}
+  
+  <div class="form-group mb3">
+  
+  {{a.media}}
+  
+  {{a.label_tag}}
+  
+  {{a}}
+  {%endfor%}
+  <br>
+  <input type="submit" value="submit" class="mt-2 w-20" style="border-radius:2%;">
+</form><br>
+<!--messages set -->
+{% if messages %}
+
+{% for message in messages %}
+ <h3 {% if message.tags %} class="{{message.tags}}" {% endif %}>
+ {{message}}
+ </h3>
+{% endfor %}
+
+{% endif %}
+
+</div>
+</div>
+</div>
+</section>
+
+    
+<!--<table class="table table-hover">           
+  <tbody>
+    <tr>
+      <td>House Name:</td>
+      <td>{{appo.id}}</td>            
+    </tr>
+    <tr>
+      <td>House Name:</td>
+      <td>{{appo.name}}</td>            
+    </tr>
+    <tr>
+      <td>House Details:</td>
+      <td>{{appo.area}}</td>            
+    </tr>
+
+  </tbody>
+</table> -->
+
+
+<!-- Optional JavaScript; choose one of the two! -->
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+     <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+</html>                

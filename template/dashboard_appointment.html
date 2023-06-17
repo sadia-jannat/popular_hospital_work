@@ -1,0 +1,185 @@
+{%load static %}
+<!DOCTYPE>
+<html>
+  <head>
+   
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+<!-- static nebar link-->
+{%load static %}
+<link rel="stylesheet" href="{% static 'css/style.css'%}">
+
+
+
+<!--main.js for js folder
+<script type="text/javascript" src="{% static 'js/main.js' %}"></script>-->
+
+<!-- Fontawesome Links icon -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    
+<!--Fontawesome link for text-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@500&display=swap" rel="stylesheet">
+
+<!--Autocomplete link-->
+<link rel="stylesheet" href="https://unpkg.com/@trevoreyre/autocomplete-js/dist/style.css"/>
+
+
+<!-- jQuery for auto search last -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<!-- jQuery UI for auto search last-->
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+
+ <title>House </title>
+ <style>
+ section{
+    background-color:#E5E5E5;
+    padding: 20px;
+    margin: 20px;
+  }
+  .input-group{
+    width: auto;
+    background-color: white;
+}
+
+ </style>
+
+</head>
+<body>
+
+<section>
+  <h1 class="feature">Appointment list search by Doctor name</h1>
+  <div class="input-group bg-white">  
+    <div class="input-group">  
+
+    <form action="" method="get" class="d-flex">
+      <input class="form-control rounded rounded-pill m-4 border-5 bg-transparent " type="text" name="appointmentquery" placeholder="Search by Doctor Name" aria-label="Search " >
+       
+      <div class="input-group-append"> 
+      <button class="btn btn-secondary rounded rounded-pill m-4 border-5 bg-dark"><i class="fa fa-search fa-1x"> </i></button>
+      </div>
+
+    </form>  
+ </div>  
+ </section>
+ 
+<!--check-->  
+<!--Details-->
+<!--special card-->
+<article class="col-md-12">
+  
+  <div class="cards-1 section-gray">
+      <div class="container"> <p class="mb-lg-5">{{today}}</p>
+          <div class="row">
+            {% if appointsearch %}
+  
+                  {% for xy in appointsearch %}
+              <div class="col-md-4">
+                  <div class="card card-blog ">
+
+                      <div class="card-image">
+                          <a href="#"> <img class="img" src="{% static 'image/download.jpeg' %}">
+                              <div class="card-caption " style="color: black;"> {{ xy.doctor_name }} </div> 
+                          </a>
+                          <div class="ripple-cont">
+                            
+                          </div>
+                      </div>
+                     
+                      <div class="table">
+                        <h6 class="card-title mt-1" style="color: rgb(150, 95, 31)" class="card-subtitle mt-1">Doctor Name: {{ xy.doctor_name }}</h3>
+                        <h6 class="card-title mt-1" style="color: rgb(2, 53, 2)" class="card-subtitle mt-1">Patient Name: {{ xy.name }}</h3>
+                        <h6 class="card-title mt-1" style="color: rgb(2, 53, 2)" class="card-subtitle mt-1">Patient Phone Number: {{ xy.phone }}</h3>
+                        <h6 class="card-title mt-1" style="color: rgb(2, 53, 2)" class="card-subtitle mt-1">Patient Email: {{ xy.email }}</h3>
+                        <h6 class="card-title mt-1" style="color: rgb(2, 53, 2)" class="card-subtitle mt-1">Previous Patient: {{ xy.patient_category }}</h3>
+                        
+                      </div>
+
+                  </div>
+                </div>
+                  {% endfor %}
+  
+                {% else %}
+                  <p>No doctors available </p>
+                {% endif %}
+
+              </div><br> 
+            </div>
+          </div>
+</article>
+<!--end special card-->
+<!--end-->
+
+<section>
+<h1 class="feature">Admin dashbord</h1>
+<p>{{today}}</p>
+<div class="content">
+{% if formfetch %}
+
+<table class="table table-bordered table-striped ">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Doctor Name</th>
+        <th scope="col">Patient Name</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Patient Email</th>
+        <th scope="col">Patient Location</th>
+        <th scope="col">Patient previous record</th>
+        <th scope="col">Disease Details</th>
+        <th scope="col">Delete</th>
+        <th scope="col">Serial</th>
+
+      </tr>
+    </thead>
+    <tbody>
+
+        {% for f in formfetch%}
+
+      <tr>
+        <th scope="row">{{f.doctor_name}}</th>
+        <td>{{f.name}}</td>
+        <td>{{f.phone}}</td>
+        <td>{{f.email}}</td>
+        <td>{{f.location}}</td>
+        <td>{{f.patient_category}}</td>
+        <td>{{f.details}}</td>
+
+  <td>
+  <form action="{% url 'dashboard_appointment_delete' f.id %}" method="post">
+          {% csrf_token %}
+          <input type="submit" value="Delete">
+  </form>
+  </td>
+
+  <td>
+   <a href="{% url 'dashboard_appointment_serial' f.id %}">Edit</a>    <!--edit ar jonno-->
+  </td>
+
+</tr>
+     
+{%endfor%}
+
+</tbody>
+</table>
+
+{%endif%}
+<!--end-->
+</div>
+</section>
+
+
+
+<!-- Optional JavaScript; choose one of the two! -->
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+     <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    
+    <!--Autocomplete javascript Link-->
+    <script src="https://unpkg.com/@trevoreyre/autocomplete-js"></script>
+  </body>
+</html>    
