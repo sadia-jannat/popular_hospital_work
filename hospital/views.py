@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from datetime import date
 
 # Create your views here.
 from django.http import HttpResponse
@@ -75,7 +76,7 @@ def details(request):
 
 def testsearch(request):
     if request.method == 'GET':
-        query = request.GET.get('query')
+        query = request.GET.get('query')   #variable name those three query,queryx,queryday.Not form.py query
         queryx=request.GET.get('queryx')
         queryday=request.GET.get('queryday')
 
@@ -100,4 +101,67 @@ def testsearch(request):
         else:
             print("No information to show")
             return render(request, 'testsearch.html', {})
+
+def appointment(request, pk):
+    appo=DoctorDetails.objects.get(id=pk)
+
+    appoint=PatientForm()
+     
+    if request.method == "POST":
+        appoint=PatientForm(request.POST)
         
+        if appoint.is_valid():
+            appoint.save()
+
+            messages.info(request,'Your appointment added successfully!!')
+
+    context={'appo':appo,
+             'appoint':appoint}
+    return render(request, 'appointment.html', context)
+
+
+
+def dashboard_appointment(request):
+    appointsearch=Patient.objects.all()
+    
+    if request.method == 'GET':
+        appointmentquery = request.GET.get('appointmentquery')
+        if appointmentquery:
+            appointsearch=Patient.objects.filter(doctor_name__icontains=appointmentquery)
+
+    formfetch=Patient.objects.all()        
+    
+    today = date.today()
+    print("Today's date:", today)
+
+    context={'formfetch':formfetch,
+             'appointsearch':appointsearch,
+             'today':today}   
+         
+    return render(request, 'dashboard_appointment.html', context )
+
+
+def dashboard_appointment_delete(request,id):
+    if request.method == 'POST':
+        pi=Patient.objects.get(pk=id)
+        pi.delete()
+        return HttpResponseRedirect('/dashboard_appointment')
+
+
+def dashboard_appointment_serial(request, id):
+    if request.method == 'POST':
+         pi=Patient.objects.get(pk=id)
+         fm=PatientForm(request.POST, instance=pi)
+         if fm.is_valid():
+             fm.save()  
+
+    else:
+           pi=Patient.objects.get(pk=id)
+           fm=PatientForm(instance=pi)
+    
+
+   
+    context={'fo':fm,
+             'pi':pi}      
+    return render(request, 'serial.html', {'fo':fm})       
+
