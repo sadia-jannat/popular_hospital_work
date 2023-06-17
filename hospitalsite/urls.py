@@ -29,4 +29,9 @@ urlpatterns = [
     path('', views.doctorformfill, name='doctorformfill'),
     path('details/', views.details, name="details"),
     path('testsearch/', views.testsearch, name="testsearch"),
+    path('appointment/<str:pk>', views.appointment, name="appointment"),
+    path('dashboard_appointment/', views.dashboard_appointment, name='dashboard_appointment'),
+    path('dashboard_appointment_delete/<int:id>/', views.dashboard_appointment_delete, name='dashboard_appointment_delete'),
+    path('dashboard_appointment_serial/<int:id>/', views.dashboard_appointment_serial, name='dashboard_appointment_serial'),
+    
 ]
