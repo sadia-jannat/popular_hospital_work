@@ -3,6 +3,7 @@ from django.db import models
 import datetime
 import os
 
+    
 # Create your models here.
 AREA=(               
     ('Dhaka', 'Dhaka'),
@@ -45,3 +46,25 @@ class DoctorDetails(models.Model):
     class Meta:
         verbose_name = "DoctorDetails"
         verbose_name_plural = "DoctorDetails"
+
+
+BOOL=(
+    ('Yes','Yes'),
+    ('No','No'),
+)
+class Patient(models.Model):
+    doctor_name=models.CharField(max_length=100)
+    name=models.CharField(max_length=100)
+    phone=models.IntegerField()
+    email=models.EmailField()
+    location=models.CharField(max_length=200)
+    patient_category=models.CharField(choices=BOOL, max_length=50)
+    details=models.CharField(max_length=300)
+    
+
+    class Meta:
+        verbose_name = "Patient"
+        verbose_name_plural = "Patient"
+
+
+
