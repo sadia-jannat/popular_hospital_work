@@ -30,6 +30,11 @@ import json
 from .models import *
 from .forms import *
 
+
+#myaccount.google.com ar google genarate password
+from django.core.mail import send_mail
+from django.conf import settings 
+
 # Create your views here.
 def doctorformfill(request):
     form=DoctorDetailsForm()
@@ -75,6 +80,9 @@ def details(request):
         
 
 def testsearch(request):
+
+    formfetch=DoctorDetails.objects.all() 
+
     if request.method == 'GET':
         query = request.GET.get('query')   #variable name those three query,queryx,queryday.Not form.py query
         queryx=request.GET.get('queryx')
@@ -82,25 +90,25 @@ def testsearch(request):
 
         if query and queryx and queryday:
             products = DoctorDetails.objects.filter(area__icontains=query,special__icontains=queryx, daywork__icontains=queryday).order_by('name') 
-            return render(request, 'testsearch.html', {'products':products})
+            return render(request, 'testsearch.html', {'products':products,'formfetch':formfetch})
         elif query and queryx or queryday:
             products = DoctorDetails.objects.filter(area__icontains=query,special__icontains=queryx,daywork__icontains=queryday).order_by('name') 
-            return render(request, 'testsearch.html', {'products':products})
+            return render(request, 'testsearch.html', {'products':products, 'formfetch':formfetch})
         elif query or queryx and queryday:
             products = DoctorDetails.objects.filter(area__icontains=query,special__icontains=queryx,daywork__icontains=queryday).order_by('name') 
-            return render(request, 'testsearch.html', {'products':products})
+            return render(request, 'testsearch.html', {'products':products, 'formfetch':formfetch})
         elif query:
             products = DoctorDetails.objects.filter(area__icontains=query,special__icontains=queryx,daywork__icontains=queryday).order_by('name') 
-            return render(request, 'testsearch.html', {'products':products})
+            return render(request, 'testsearch.html', {'products':products, 'formfetch':formfetch})
         elif queryx:
             products = DoctorDetails.objects.filter(area__icontains=query,special__icontains=queryx,daywork__icontains=queryday).order_by('name') 
-            return render(request, 'testsearch.html', {'products':products})
+            return render(request, 'testsearch.html', {'products':products, 'formfetch':formfetch})
         elif queryday:
             products = DoctorDetails.objects.filter(area__icontains=query,special__icontains=queryx,daywork__icontains=queryday).order_by('name') 
-            return render(request, 'testsearch.html', {'products':products})
+            return render(request, 'testsearch.html', {'products':products, 'formfetch':formfetch})
         else:
             print("No information to show")
-            return render(request, 'testsearch.html', {})
+            return render(request, 'testsearch.html', {'formfetch':formfetch})
 
 def appointment(request, pk):
     appo=DoctorDetails.objects.get(id=pk)
@@ -114,6 +122,21 @@ def appointment(request, pk):
             appoint.save()
 
             messages.info(request,'Your appointment added successfully!!')
+    #end        
+    #test purpose
+    if request.method=="POST":
+        appointvar=Patient()
+
+        appointvar.doctor_name=request.POST.get('doctor_name')
+        appointvar.name=request.POST.get('name')
+        appointvar.phone=request.POST.get('phone')
+        appointvar.email=request.POST.get('email')
+        appointvar.location=request.POST.get('location')
+        appointvar.patient_category=request.POST.get('patient_category')
+        appointvar.details=request.POST.get('details')
+
+        appointvar.save()
+     
 
     context={'appo':appo,
              'appoint':appoint}
@@ -165,3 +188,44 @@ def dashboard_appointment_serial(request, id):
              'pi':pi}      
     return render(request, 'serial.html', {'fo':fm})       
 
+
+
+def appointmentform(request, pk):
+
+    appo=DoctorDetails.objects.get(id=pk)
+
+    if request.method=="POST":
+        appointvar=Patient()
+
+        appointvar.doctor_name=request.POST.get('doctor_name')
+        appointvar.name=request.POST.get('name')
+        appointvar.phone=request.POST.get('phone')
+        appointvar.email=request.POST.get('email')
+        appointvar.location=request.POST.get('location')
+        appointvar.patient_category=request.POST.get('patient_category')
+        appointvar.details=request.POST.get('details')
+
+        appointvar.save()
+
+    context={'appo':appo}    
+    return render(request, 'appointmentform.html', context)
+
+def sendemail(request):
+
+    if request.method =="POST":
+        
+        email=request.POST['email']
+        message = request.POST['message']
+        send_mail(
+            'Contact with patient from django',               #email ar title 
+            message,                              #message
+            'settings.EMAIL_HOST_USER',
+            [email],
+            
+            fail_silently=False 
+        )
+           
+
+        messages.info(request,'Your data added successfully!!')
+
+    return render(request, 'sendemail.html')
