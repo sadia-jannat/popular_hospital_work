@@ -35,4 +35,5 @@ urlpatterns = [
     path('dashboard_appointment_serial/<int:id>/', views.dashboard_appointment_serial, name='dashboard_appointment_serial'),
     path('sendemail/', views.sendemail, name="sendemail"),
     
+    
 ]
