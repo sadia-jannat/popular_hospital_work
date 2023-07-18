@@ -38,6 +38,14 @@ EMAIL_PORT=587
 EMAIL_USE_TLS=True
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 
+#use email send by gmail account(generate password test)
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_HOST_USER='sadiatonni1995@gmail.com'
+EMAIL_HOST_PASSWORD='fbqdormfxtipdhvh'
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
+EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+
 
 # Application definition
 
