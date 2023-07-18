@@ -33,5 +33,6 @@ urlpatterns = [
     path('dashboard_appointment/', views.dashboard_appointment, name='dashboard_appointment'),
     path('dashboard_appointment_delete/<int:id>/', views.dashboard_appointment_delete, name='dashboard_appointment_delete'),
     path('dashboard_appointment_serial/<int:id>/', views.dashboard_appointment_serial, name='dashboard_appointment_serial'),
+    path('sendemail/', views.sendemail, name="sendemail"),
     
 ]
