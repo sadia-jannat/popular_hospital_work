@@ -22,30 +22,38 @@
    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@500&display=swap" rel="stylesheet">
    <title>Form Fillup page</title>
 
-
-   <style>
+<!-- static nebar link-->
+{%load static %}
+<link rel="stylesheet" href="{% static 'css/styletwo.css'%}">
     
-  body {  
-    background-color: #dde0dd;
-    min-height: 100vh;  
-    margin: 10px; 
-   background-color: #68f768;
-  }  
-  .container{
-    
-   background-color: aliceblue;
-  }
-  .logo i {
-     color: #054605;
-     font-size: 40px;
- }
-  
-   </style> 
-   
   </head>
   <body>
+    
+<!--start
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  
 
-<!--nav wrap and menu-, header body-->
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          ALL PAGES
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{% url 'details' %}">Action</a>
+          <a class="dropdown-item" href="{% url 'testsearch' %}">Action</a>
+          <a class="dropdown-item" href="{% url 'dashboard_appointment' %}">Action</a>
+          
+      </li>
+      
+    </ul>
+    
+  </div>
+</nav>
+end-->
+
+<!--nav wrap and menu-, header body
 <div class="container">        
   <div class="nav-wrap">
       <div class="logo">
@@ -62,13 +70,24 @@
             
 </div>
 </div>
-<!--nav wrap and menu-, header body end-->
-    
-<!--doctor form -->
-    <section>
-    <div class="container">
-    <h2 style="text-align: center;">Doctor Details Include</h2>
-    <div class="row">
+ nav wrap and menu-, header body end-->
+<!--header-->
+<div class="container-fluid text-light py-4 rounded shadow rounded rounded-pill" style="background-color: #abb0b6;" >
+  <header class="text-center">
+      <h4>Doctor Details Include</h4>
+  </header>
+  </div>
+ <!--end-->
+ 
+ <br>
+<!---go back button-->
+ <button class="btn btn-outline-dark mt-2 my-2 my-sm-0" type="submit"><a href="{% url 'home' %}">Back to Home Page</a></button>
+<!--end-->
+
+ <!--doctor form -->
+<section>
+<div class="container mt-3">
+<div class="row">
     
     
 <div class="col-3">
@@ -115,12 +134,6 @@
 </section>
 
 
-
-
-
-    
-    
-   
 
 
    <!-- Optional JavaScript; choose one of the two! -->
