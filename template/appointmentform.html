@@ -1,0 +1,143 @@
+{%load static %}
+
+<html>
+  <head>
+   
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+<!-- Fontawesome Links icon -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    
+<!--Fontawesome link for text-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@500&display=swap" rel="stylesheet">
+
+<!-- Fontawesome Links icon -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    
+<!--Autocomplete link-->
+<link rel="stylesheet" href="https://unpkg.com/@trevoreyre/autocomplete-js/dist/style.css"/>
+
+
+<!-- jQuery for auto search last -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<!-- jQuery UI for auto search last-->
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<!-- static nebar link-->
+{%load static %}
+<link rel="stylesheet" href="{% static 'css/styletwo.css'%}">
+
+ <title>House </title>
+
+<!--latest--> 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">        
+ <!--end-->
+
+<!--script for doctor name. .scriptcheckbox and #scriptboxcall main use for 2 place. input and box a use-->
+<script>
+    $(document).ready(function()
+    {
+      $('.scriptcheckbox').click(function(){
+       var txt="";
+       $('.scriptcheckbox:checked').each(function(){
+        txt+=$(this).val()
+       });
+       $('#scriptboxcall').val(txt);
+      });
+    }
+    );
+  </script>    
+
+</head>
+<body >
+<!--start form-->
+<div class="container-fluid text-light py-4 rounded shadow rounded rounded-pill" style="background-color: #abb0b6;">
+    <header class="text-center">
+        <h4 class="display-6">Book Your Appointment</h4>
+    </header>
+    
+</div>
+<!---go back button-->
+<br>
+<button class="btn btn-outline-dark mt-2 my-2 my-sm-0" type="submit"><a href="{% url 'home' %}">Back to Home Page</a></button>
+<!--end-->
+
+<section>
+  <div class="d-flex justify-content-center">  <!--center form-->
+
+<div class="container mx-4 my-4 w-50 text-light p-2 rounded shadow " style="background-color: #262b2e;">
+  
+    <form action="" method="POST" enctype="multipart/form-data" class="row g-3">
+
+            {% csrf_token %} 
+      
+            <!--doctor name from script,checkbox,input,value="{{appo.name}}",{{appo.name}},id="scriptboxcall"-->
+        <div class="col-12">
+            <div class="form-check">
+              <input class="scriptcheckbox" type="checkbox" value="{{appo.name}}"  id="gridCheck" >
+              <label class="form-check-label" for="gridCheck">
+                {{appo.name}}
+              </label>
+            </div>
+          </div>
+          <div class="col-12">
+            <label for="inputAddress" class="form-label">Doctor Name</label>
+            <input id="scriptboxcall" Required name="doctor_name" type="text" class="form-control" id="inputAddress" placeholder="Enter your doctor name">
+          </div>  
+        <!--end doctor name-->
+        <div class="col-12">
+            <label for="inputAddress" class="form-label">Patient Name</label>
+            <input Required name="name" type="text" class="form-control" id="inputAddress" placeholder="Enter patient name">
+          </div> 
+
+        <div class="col-md-6">
+            <label for="inputEmail4" class="form-label">Patient Email</label>
+            <input type="email" Required name="email" class="form-control" id="inputEmail4" placeholder="Enter patient email">
+        </div>  
+        <div class="col-md-6">
+            <label for="inputphone" class="form-label">Patient Phone</label>
+            <input type="number" Required name="phone" class="form-control" id="inputphone" placeholder="Enter patient phone">
+          </div>  
+        
+        
+        <div class="col-12">
+          <label for="inputAddress" class="form-label">Patient Location</label>
+          <input type="text" Required name="location" class="form-control" id="inputAddress" placeholder="Enter patient location">
+        </div>
+        <div class="col-12">
+            <label for="exampleFormControlSelect1">Are you previous patient?</label>
+            <select Required name="patient_category" class="form-control" id="exampleFormControlSelect1">
+            <option selected>Choose...</option>  
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+        </div>
+        <div class="col-12">
+            <label for="inputdetails" class="form-label">Details history of patient</label>
+            <input type="text" Required name="details" style="height:200px;" class="form-control mb-2" id="inputdetails" placeholder="Enter patient location">
+          </div>
+        
+        <div class="col-12">
+          <button type="submit" class="btn mt-2" style="background-color:rgb(240, 244, 245);"><h6 style="color: black;">Apply</h6></button>
+        </div>
+
+      </form>
+
+</div>
+
+</div>
+</section>
+
+<!-- Optional JavaScript; choose one of the two! -->
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+     <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+</body>
+</html>        
