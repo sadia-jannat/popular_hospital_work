@@ -48,25 +48,15 @@
 <body>
 
   <!--nav wrap and menu-, header body-->
-<div class="container">        
-  <div class="nav-wrap">
-      <div class="logo">
-         <h1><i class="fas fa-home"></i>Popular Hospital</h1>     
-      </div>
-  <div class="menu">
-     <ul>
-      
-      <button type="submit" class="btn btn-success btn-md"> <a href="/" style="color: #000000;">Back to Previous</a></button>
-      <button type="submit" class="btn btn-danger btn-md"> <a href="{% url 'details' %}" style="color: #000000;">All Details of Doctors</a></button>
-
-    </ul>
-  </div>
-            
-</div>
-</div>
-<!--nav wrap and menu-, header body end-->
-    
-
+  <!--header-->
+<div class="container-fluid text-light py-4 rounded shadow rounded rounded-pill" style="background-color: #abb0b6;" >
+  <header class="text-center">
+      <h4>Doctor Details Include</h4>
+  </header>
+  </div><br>
+ <!--end-->
+ <button class="btn btn-outline-dark mt-5 my-2 my-sm-0" type="submit"><a href="{% url 'home' %}">Back to Home Page</a></button>
+<br><br>
  <!--all list of doctor-->  
  <div class="content">
   {% if doclist %}
