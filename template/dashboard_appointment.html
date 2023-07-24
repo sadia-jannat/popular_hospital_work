@@ -32,6 +32,10 @@
 
 <!-- jQuery UI for auto search last-->
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<!-- static nebar link-->
+{%load static %}
+<link rel="stylesheet" href="{% static 'css/styletwo.css'%}">
+
 
  <title>House </title>
  <style>
@@ -48,9 +52,35 @@
  </style>
 
 </head>
-<body>
+<body >
 
-<section>
+<!--latest two-->
+<div class="container">  
+  <div class="row mb-5">  
+    <div class="col-lg-6 mx-auto">  
+      
+      <!--search start-->  
+      <div class="bg-white p-5 m-5 rounded shadow rounded rounded-pill">  
+        <h6 >Appointment List Search by Doctor Name</h6>         
+      <div class="input-group"> 
+        <form action="" method="get" class="d-flex">
+          <input class="form-control rounded rounded-pill m-4 border-dark border-5 bg-transparent " type="text" name="appointmentquery" placeholder="Search by Doctor Name" aria-label="Search " >
+          
+          <div class="input-group-append"> 
+          <button style="background-color: #003300;" class="btn btn-secondary rounded rounded-pill m-4 border-5 "><i style="color: white;" class="fa fa-search fa-1x"> </i></button>
+          </div>
+        </form>  
+      </div> 
+
+      </div>
+      <!--end search start-->  
+    </div>  
+  </div>     
+</div>  
+<!--end latest-->                
+
+<!-- main code you can use for any problem
+  <section>  
   <h1 class="feature">Appointment list search by Doctor name</h1>
   <div class="input-group bg-white">  
     <div class="input-group">  
@@ -64,14 +94,13 @@
 
     </form>  
  </div>  
- </section>
+ </section>-->
  
-<!--check-->  
-<!--Details-->
+
 <!--special card-->
 <article class="col-md-12">
   
-  <div class="cards-1 section-gray">
+  <div class="cards-1 " style="background-color: #FFFFFF">
       <div class="container"> <p class="mb-lg-5">{{today}}</p>
           <div class="row">
             {% if appointsearch %}
@@ -112,9 +141,9 @@
 </article>
 <!--end special card-->
 <!--end-->
-
+<!--
 <section>
-<h1 class="feature">Admin dashbord</h1>
+<h1 >Admin dashbord</h1>
 <p>{{today}}</p>
 <div class="content">
 {% if formfetch %}
@@ -122,6 +151,8 @@
 <table class="table table-bordered table-striped ">
     <thead class="thead-dark">
       <tr>
+      
+        <th scope="col">Doctor id</th>
         <th scope="col">Doctor Name</th>
         <th scope="col">Patient Name</th>
         <th scope="col">Phone</th>
@@ -130,7 +161,7 @@
         <th scope="col">Patient previous record</th>
         <th scope="col">Disease Details</th>
         <th scope="col">Delete</th>
-        <th scope="col">Serial</th>
+        <th scope="col">Edit</th>
 
       </tr>
     </thead>
@@ -139,6 +170,8 @@
         {% for f in formfetch%}
 
       <tr>
+        
+        <th scope="row">{{f.pk}}</th>
         <th scope="row">{{f.doctor_name}}</th>
         <td>{{f.name}}</td>
         <td>{{f.phone}}</td>
@@ -155,7 +188,7 @@
   </td>
 
   <td>
-   <a href="{% url 'dashboard_appointment_serial' f.id %}">Edit</a>    <!--edit ar jonno-->
+   <a href="{% url 'dashboard_appointment_serial' f.id %}">Edit</a>    <--edit ar jonno
   </td>
 
 </tr>
@@ -166,9 +199,9 @@
 </table>
 
 {%endif%}
-<!--end-->
+<--end
 </div>
-</section>
+</section> -->
 
 
 
