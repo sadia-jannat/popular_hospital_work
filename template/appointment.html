@@ -17,10 +17,6 @@
 <!-- Fontawesome Links icon -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
     
-<!--Fontawesome link for text-->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@500&display=swap" rel="stylesheet">
 
 <!--Autocomplete link-->
 <link rel="stylesheet" href="https://unpkg.com/@trevoreyre/autocomplete-js/dist/style.css"/>
@@ -31,19 +27,18 @@
 
 <!-- jQuery UI for auto search last-->
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
  <title>House </title>
 
 <!--latest--> 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">        
  <!--end-->
+ <!-- static nebar link-->
+{%load static %}
+<link rel="stylesheet" href="{% static 'css/styletwo.css'%}">
+
  <style>
-    
-  body {  
-    background-color: #dde0dd;
-    min-height: 100vh;  
-    margin: 10px; 
-   background-color: #68f768;
-  }  
+  
   .container{
     
    background-color: aliceblue;
@@ -53,19 +48,43 @@
      font-size: 40px;
  }
   
+
    </style> 
+
+<script>
+  $(document).ready(function()
+  {
+    $('.scriptcheckbox').click(function(){
+     var txt="";
+     $('.scriptcheckbox:checked').each(function(){
+      txt+=$(this).val()
+     });
+     $('#scriptboxcall').val(txt);
+    });
+  }
+  );
+</script>   
     
 </head>
-<body>
+<body class="bgstyle">
+ <!--var={{appo.name}}
+  print(var)-->
 
 <!--doctor details-->  
   <section>
     <div class="container">
     <h2 style="text-align: center;">Doctor Information</h2>
     <div class="row">
+<!--model fetch to model post-->
+<form action="" method="post" enctype="multipart/form-data"  class="shadow p-5">
+  {% csrf_token %}    
+
+<!--only table-->
   <table class="table table-hover">
     <thead>
       <tr>
+        <th scope="col">check box</th>
+        <th scope="col">id</th>
         <th scope="col">Name</th>
         <th scope="col">Speciality</th>
         <th scope="col">Location</th>
@@ -74,6 +93,8 @@
     </thead>
     <tbody>
       <tr>
+        <td><input type="checkbox" name="{{appo.pk}}" id="check"></td>
+        <th scope="row">{{appo.pk}}</th>
         <th scope="row">{{appo.name}}</th>
         <td>{{appo.special}}</td>
         <td>{{appo.area}}</td>
@@ -81,6 +102,10 @@
       </tr>
     </tbody>
   </table>
+<!--end table-->
+<input type="submit" value="submit" class="mt-2 w-20" style="border-radius:2%;">
+</form>  
+<!--model to model fetch get-->
 </div>
 </div>
 </div>
@@ -96,6 +121,8 @@
   <div class="col-8">
   
   <form action="" method="post" enctype="multipart/form-data"  class="shadow p-5">
+    <p>{{appo.name}}</p>
+
   {% csrf_token %}
   
   {%for a in appoint %}
@@ -145,6 +172,114 @@
 
   </tbody>
 </table> -->
+<!--test code-->
+<div class="form-check">
+  <input class="scriptcheckbox" type="checkbox" value="{{appo.id}}" id="flexCheckDefault">
+  <label class="form-check-label" for="flexCheckDefault">
+    {{appo.name}} doctor name
+  </label>
+</div>
+<!---test code 2-->
+<div class="row">
+  <div class="col-lg-6 m-auto">
+  <div class="card mt-5">
+
+  <div class="card-body">
+  
+  <form action="" method="POST" enctype="multipart/form-data">
+      {% csrf_token %} 
+
+ 
+  <!-- this is main.if need you can use it<input value="{{appo.name}}" class="scriptcheckbox" type="checkbox"  />  alhamdulilha-->
+  <div class="col-12"> <!--alhamdulilha-->
+    <div class="form-check">
+      <input class="scriptcheckbox" type="checkbox" value="{{appo.name}}"  id="gridCheck" >
+      <label class="form-check-label" for="gridCheck">
+        {{appo.name}}
+      </label>
+    </div>
+  </div>  <!--alhamdulilha-->
+  
+  <div class="input-group-lg mb-3">
+  <div class="input-group-prepend">
+  <span class="input-group-text">
+  <i class="fa fa-user fa-2x"></i>
+  <h4> Enter Your Name</h4>
+  </span>
+  </div>
+  <input type="text" id="scriptboxcall" Required name="doctor_name" class="form-control py-4" placeholder="Enter your name">  <!--alhamdulilha-->
+  </div>
+
+  <div class="input-group-lg mb-3">
+    <div class="input-group-prepend">
+    <span class="input-group-text">
+    <i class="fas fa-monument fa-2x"></i>
+    <h4> Name</h4>
+    </span>
+    </div>
+    <input type="text" Required name="name" class="form-control py-4" placeholder="Enter house name">
+    </div>
+  
+  <div class="input-group-lg mb-3">
+  <div class="input-group-prepend">
+  <span class="input-group-text">
+  <i class="fa fa-lock fa-2x"></i>
+  <h4>Enter Your Email</h4>
+  </span>
+  </div>
+  <input type="email" Required name="email" class="form-control py-4" placeholder="Enter your email">
+  </div>
+
+  <div class="input-group-lg mb-3">
+    <div class="input-group-prepend">
+    <span class="input-group-text">
+    <i class="fa fa-lock fa-2x"></i>
+    <h4>Enter Your Phone Number</h4>
+    </span>
+    </div>
+    <input type="number" Required name="phone" class="form-control py-4" placeholder="Enter your phone number">
+    </div>
+
+    <div class="input-group-lg mb-3">
+      <div class="input-group-prepend">
+      <span class="input-group-text">
+      <i class="fa fa-lock fa-2x"></i>
+      <h4>Enter Your Phone Number</h4>
+      </span>
+      </div>
+      <input type="text" Required name="location" class="form-control py-4" placeholder="Enter your phone number">
+      </div>
+    
+      <div class="input-group-lg mb-3">
+        <div class="input-group-prepend">
+        <span class="input-group-text">
+        <i class="fa fa-lock fa-2x"></i>
+        <h4>Enter Your Phone Number</h4>
+        </span>
+        </div>
+        <input type="bool" Required name="patient_category" class="form-control py-4" placeholder="Are you previous patient?">
+        </div>
+      
+        <div class="input-group-lg mb-3">
+          <div class="input-group-prepend">
+          <span class="input-group-text">
+          <i class="fa fa-lock fa-2x"></i>
+          <h4>Enter Your Phone Number</h4>
+          </span>
+          </div>
+          <input type="text" Required name="details" class="form-control py-4" placeholder="Enter your phone number">
+          </div> 
+
+  
+
+<button type="submit" class="btn btn-dark">Save</button>
+</form>
+
+</div>
+</div>
+</div>
+</div>
+
 
 
 <!-- Optional JavaScript; choose one of the two! -->
@@ -153,4 +288,5 @@
      <!-- Option 2: Separate Popper and Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+</body>
 </html>                
