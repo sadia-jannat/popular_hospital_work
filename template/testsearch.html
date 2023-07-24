@@ -37,45 +37,45 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">        
  <!--end-->
 
-<style>
-  .form-control:focus {  
-  box-shadow: none;  
-}  
-.form-control-underlined {  
-  border-width: 0;  
-  border-bottom-width: 1px;  
-  border-radius: 0;  
-  padding-left: 0;  
-}  
-body {  
-  background: rgb(93, 228, 93);  
-  min-height: 100vh;  
-  margin: 10px;  
-}  
+ <!-- static nebar link-->
+{%load static %}
+<link rel="stylesheet" href="{% static 'css/styletwo.css'%}">
 
-.form-control::placeholder {  
-  font-size: 0.95rem;  
-  color: #aaa;  
-  font-style: italic;  
-}  
-
-h5 {  
-font-family: 'Indie Flower', cursive;  
-font-size: 32px;  
-  color: #03A9F4;  
-  font-weight: bold;  
-}  
-.logo i {
-     color: #054605;
-     font-size: 40px;
- }
-  
- </style>
 
 </head>
 <body >
+  <section>
+    <div class="row">
+      <!--<div class="col-6">
+        <img src="{% static 'image/popular.jpg' %}" alt="Card image cap">
+      </div>-->
+      <div class="col ml-auto">
+        <img src="{% static 'image/backdoctor.png' %}" alt="Card image cap">
 
-<!--nav wrap and menu-, header body-->
+       <!-- {% if formfetch %}
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Serial</th>
+              <th scope="col">Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for f in formfetch%}
+            <tr>
+              <th scope="row">{{f.pk}}</th>
+              <td>{{f.name}}</td>
+            </tr>
+            {%endfor%}
+          </tbody>
+        </table>
+        {%endif%}
+      </div>-->
+    </div>
+  </section>
+  
+
+<!--nav wrap and menu-, header body
 <div class="container">        
   <div class="nav-wrap">
       <div class="logo">
@@ -93,7 +93,7 @@ font-size: 32px;
             
 </div>
 </div>
-<!--nav wrap and menu-, header body end-->
+-nav wrap and menu-, header body end-->
 
 <!--<section>
   <form action="" method="get" class="d-flex">
@@ -136,27 +136,34 @@ font-size: 32px;
       {% endif %}
 
   </div>
-
+<h5 class="font-weight-light mb-4 font-italic text-white"> Popular Hospital Doctors Search </h5>  
 </div> -->
 
-<!--latest-->
+<!--header-->
+<div class="container-fluid text-light py-2 px-2 rounded shadow rounded rounded-pill" style="background-color: #abb0b6;" >
+  <header class="text-center">
+      <h4>Search Your Doctor</h4>
+  </header>
+</div>
+<!--end header-->
+<!--latest two-->
 <div class="container">  
-  <div class="row mb-5">  
+  <div class="row mb-5"> 
+    <button class="btn btn-outline-dark mt-2 my-2 my-sm-0" type="submit"><a href="{% url 'home' %}">Back to Home Page</a></button> 
     <div class="col-lg-12 mx-auto">  
-      <h5 class="font-weight-light mb-4 font-italic text-white"> Popular Hospital Doctors Search </h5>  
-      <div class="bg-white p-5 m-5 rounded shadow">  
-       
-          
+      
+      <!--search start-->  
+      <div class="bg-white p-5 m-5 rounded shadow rounded rounded-pill">  
+                 
             <div class="input-group">  
-
-            
+          
               <form action="" method="get" class="d-flex">
-                <input class="form-control rounded rounded-pill m-4 border-5 bg-transparent " type="text" name="query" placeholder="Search by Location" aria-label="Search " >
-                <input class="form-control rounded rounded-pill m-4 border-5 bg-transparent" type="text" name="queryx" placeholder="Search by Speciality" aria-label="Search " >
-                <input class="form-control rounded rounded-pill m-4 border-5 bg-transparent" type="text" name="queryday" placeholder="Search by Daywork" aria-label="Search " >
+                <input class="form-control rounded rounded-pill m-4 border-dark border-5 bg-transparent " type="text" name="query" placeholder="Search by Location" aria-label="Search " >
+                <input class="form-control rounded rounded-pill m-4 border-dark border-5 bg-transparent" type="text" name="queryx" placeholder="Search by Speciality" aria-label="Search " >
+                <input class="form-control rounded rounded-pill m-4 border-dark border-5 bg-transparent" type="text" name="queryday" placeholder="Search by Daywork" aria-label="Search " >
                 
                 <div class="input-group-append"> 
-                <button class="btn btn-secondary rounded rounded-pill m-4 border-5 bg-dark"><i class="fa fa-search fa-1x"> </i></button>
+                <button style="background-color: #686b6e;" class="btn  rounded rounded-pill m-4 border-5 "><i class="fa fa-search fa-1x" style="color: white;"> </i></button>
                 </div>
 
             </form>  
@@ -164,7 +171,8 @@ font-size: 32px;
             </div>  
           
        <span>You can search any options as you prefere.</span>
-      </div>  
+      </div> 
+      <!--end search start--> 
     </div>  
   </div>     
 </div>  
@@ -191,7 +199,8 @@ font-size: 32px;
                           <h6 class="card-title mt-1" style="color: rgb(2, 53, 2)" class="card-subtitle mt-1">Specialist: {{ product.special }}</h3>
                           <h6 class="card-title mt-1" style="color: rgb(2, 53, 2)" class="card-subtitle mt-1">Email: {{ product.email}}</h3>
                           <hr>
-                          <a href="{% url 'appointment' product.pk %}" class="btn btn-dark ml-2">Get Appointment</a>
+                          <!--<a href="{% url 'appointment' product.pk %}" class="btn btn-dark ml-2">Get Appointment</a>-->
+                          <a style="background-color: #003300; color: white;" href="{% url 'appointmentform' product.pk %}" class="btn  ml-2">Get Appointment</a>
                          
                           
                       </div>
@@ -201,7 +210,7 @@ font-size: 32px;
           {% endfor %}
 
       {% else %}
-           <p>No doctors available </p>
+           <h6 style="color: white;">No doctors available </h6>
       {% endif %}
 
   </div>
@@ -209,6 +218,7 @@ font-size: 32px;
 </div>
 </section>
 <!--end details-->
+
 
 
 <!-- Optional JavaScript; choose one of the two! -->
