@@ -49,3 +49,8 @@ class PatientForm(forms.ModelForm):
             'patient_category': forms.Select(attrs={'class':'form-select'}),
             'details': forms.TextInput(attrs={'class':'form-control'}),
         }
+
+
+
+            
+
