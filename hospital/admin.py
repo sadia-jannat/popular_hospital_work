@@ -14,3 +14,16 @@ from  .models import Patient
 @admin.register(Patient)
 class PatientAdmin(admin.ModelAdmin):
     list_display=('doctor_name','name','phone','email','location','patient_category','details') 
+
+
+from .models import(Test)
+@admin.register(Test)
+class TestAdmin(admin.ModelAdmin):
+    list_display=['name']
+
+
+   
+
+
+
+
