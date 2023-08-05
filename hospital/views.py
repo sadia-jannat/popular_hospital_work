@@ -229,3 +229,27 @@ def sendemail(request):
         messages.info(request,'Your data added successfully!!')
 
     return render(request, 'sendemail.html')
+
+
+def home(request):
+    return render(request, 'home.html')
+
+def admin_dashboard(request):
+
+    #appointsearch=Patient.objects.all()
+    
+    #if request.method == 'GET':
+     #   appointmentquery = request.GET.get('appointmentquery')
+      #  if appointmentquery:
+       #     appointsearch=Patient.objects.filter(doctor_name__icontains=appointmentquery)
+
+    formfetch=Patient.objects.all()        
+    
+    today = date.today()
+    print("Today's date:", today)
+
+    context={'formfetch':formfetch,
+        #     'appointsearch':appointsearch,
+             'today':today}   
+    
+    return render(request, 'admin_dashboard.html', context)
